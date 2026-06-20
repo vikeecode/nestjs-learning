@@ -16,13 +16,15 @@ import { DatabaseController } from './database/database.controller';
 import { ConfigModule } from '@nestjs/config';
 import { EvService } from './ev/ev.service';
 import { EvController } from './ev/ev.controller';
+import { CustomdecoraterModule } from './customdecorater/customdecorater.module';
+
 
 
 @Module({
   imports: [EmoplyeeModule, StudentModule, CustomerModule,ConfigModule.forRoot({
     envFilePath: '.env',
     isGlobal: true
-  })],
+  }), CustomdecoraterModule],
   controllers: [AppController, UserController, ProductController, MynameController, UserRolesController, ExceptionController, DatabaseController, EvController],
   providers: [AppService, ProductService, DatabaseService, EvService],
 })
