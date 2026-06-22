@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, ParseBoolPipe, ParseIntPipe, Post, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseBoolPipe, ParseIntPipe, Post, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 //import type { Request, Response } from 'express';
 import { createUserDto } from 'src/usermodule/Dto/CreateUser.dto';
 import { AuthGuardGuard } from 'src/usermodule/guards/auth-guard/auth-guard.guard';
@@ -84,6 +84,14 @@ return {id, postId};
 searchUser(@Query('sortDesc', ParseBoolPipe) sortBy: boolean){
     console.log(sortBy);
     return {};
+}
+
+@Delete('/delte/:id')
+
+dleteUserById(@Param('id', ParseIntPipe)  id: number){
+    console.log("id",id);
+ const deleteUser = this.userService.deleteUserById(id);
+ return deleteUser
 }
 
 

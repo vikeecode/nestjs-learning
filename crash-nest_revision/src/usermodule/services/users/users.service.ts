@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { createUser } from 'src/utlis/type';
 
 @Injectable()
@@ -19,5 +19,16 @@ export class UsersService {
     fetchUserById(id:number){
         return this.fakeUser[id];
 
+    }
+
+    deleteUserById(id:number){
+        const user = this.fakeUser.splice(id, 1);
+        if(!user){
+            throw new HttpException('User not found', HttpStatus.BAD_REQUEST);
+        }
+        return {
+            message: 'User deleted',
+        user
+        }
     }
 }
