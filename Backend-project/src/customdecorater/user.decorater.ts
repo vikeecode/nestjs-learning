@@ -21,7 +21,9 @@ const users =
 
 export const User = createParamDecorator(
   (data: unknown, ctx: ExecutionContext) => {
-    return users;
+    const request = ctx.switchToHttp().getRequest();
+    const user = request.user;
+    return user;
   },
 );
 
