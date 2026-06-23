@@ -26,11 +26,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
    
     TypeOrmModule.forRoot({ 
       type: 'postgres',
-  //     host:process.env.HOST,
-  //     port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
-  //     username:process.env.DATABASE_USER,
-  //     password:process.env.DB_PASSWORD,
-  //     database:process.env.DATABASE_NAME,
       url:process.env.DATABASE_URL,
        ssl: {
     rejectUnauthorized: false,
