@@ -80,4 +80,30 @@ async deleteEmployeeData(
 //         Employee: result
 //     }
 // }
+
+// filtering through query 
+
+async search (filter:{name?:string; department?:string}):Promise<Employee[]>{
+    const query = this.employeeRepository.createQueryBuilder('employee');
+
+    if(filter.name){
+        query.andWhere('employee.name ILIKE :name', // this ilike means case senestive search now you write like VIKAS and vikas same data shown for both name
+            {
+                name: `%${filter.name}%`,//this is means %name% that means name can be anything before and after name this find name and giveus data 
+            },
+        )
+    }
+
+     if(filter.department){
+        query.andWhere('employee.department ILIKE :dept', 
+            {
+                dept: filter.department,
+            },
+        )
+    }
+
+    return query.getMany();
+
+}
+
 }

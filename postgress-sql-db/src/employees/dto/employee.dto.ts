@@ -1,17 +1,15 @@
-
-import { IsAlpha, IsAlphanumeric, IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class EmployeeDto {
-
   @IsNotEmpty()
-  @IsAlpha()
+  @IsString()
   name!: string;
 
   @IsNotEmpty()
-  @IsAlpha()
+  @IsString()
   position!: string;
 
   @IsNotEmpty()
-  @IsAlphanumeric()
+  @IsString()
   department!: string;
 }

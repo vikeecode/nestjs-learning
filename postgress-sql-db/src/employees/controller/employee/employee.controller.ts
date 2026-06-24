@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put, Query, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
 import { EmployeeService } from '../../service/employee/employee.service';
 import { Employee } from 'src/employees/entity/employee.entity';
 import { EmployeeDto } from 'src/employees/dto/employee.dto';
@@ -52,6 +52,20 @@ export class EmployeeController {
         HttpStatus.BAD_REQUEST,
       );
     }
+    return employee
+}
+//search employee
+@Get('searchEmployee')
+
+async searchEmployee(@Query()filter:{
+    name?:string;
+    department?:string;
+}):Promise<Employee[]>{
+    const employee = await this.employeeService.search(filter);
+    if(!employee){
+        throw new HttpException('employee not found',HttpStatus.BAD_REQUEST);
+    };
+
     return employee
 }
 
