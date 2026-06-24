@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EmployeesModule } from './employees/employees.module';
  console.log(process.env.DATABASE_URL);
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true
     }),
-    UserModule],
+    UserModule,
+    EmployeesModule],
   controllers: [AppController],
   providers: [AppService],
 })

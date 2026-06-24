@@ -5,6 +5,8 @@ import 'dotenv/config';
 async function bootstrap() {
   // console.log(process.env.DATABASE_URL);
   const app = await NestFactory.create(AppModule);
+  
+
   await app.listen(process.env.PORT ?? 3003);
 }
 bootstrap();
