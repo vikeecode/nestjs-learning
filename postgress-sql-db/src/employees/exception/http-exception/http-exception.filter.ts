@@ -17,6 +17,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
       path: req.url,
       message: exception.message
     })
-
+ 
   }
 }

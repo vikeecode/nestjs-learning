@@ -1,14 +1,16 @@
-import { BadRequestException, Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put, Query, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post, Put, Query, UseFilters, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { EmployeeService } from '../../service/employee/employee.service';
 import { Employee } from 'src/employees/entity/employee.entity';
 import { EmployeeDto } from 'src/employees/dto/employee.dto';
 import { HttpExceptionFilter } from 'src/employees/exception/http-exception/http-exception.filter';
+import { AuthEmployeeGuard } from 'src/auth/auth-employee/auth-employee.guard';
 
 @Controller('employee')
 @UseFilters(new HttpExceptionFilter())
 export class EmployeeController {
     constructor( private readonly employeeService:EmployeeService) {}
     //find all employee 
+    @UseGuards(AuthEmployeeGuard)
     @Get('getEmployee')
 
     async getEmployee(){
